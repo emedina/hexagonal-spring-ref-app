@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.epo.common.maven.poms</groupId>
+        <artifactId>epo-corporate-pom</artifactId>
+        <version>5.0.29</version>
+    </parent>
+
+    <groupId>org.epo.cne</groupId>
+    <artifactId>hexagonal-spring-ref-app</artifactId>
+    <version>0.0.1</version>
+    <packaging>pom</packaging>
+
+    <name>CNE - Hexagonal Spring Ref App</name>
+    <description>Reference application with Spring using the Hexagonal Architecture</description>
+
+    <scm>
+        <connection>scm:git:https://git.epo.org/cne/hexagonal-spring-ref-app.git</connection>
+        <developerConnection>scm:git:https://git.epo.org/cne/hexagonal-spring-ref-app.git</developerConnection>
+        <url>https://git.epo.org/cne/hexagonal-spring-ref-app</url>
+        <tag>develop</tag>
+    </scm>
+
+    <properties>
+        <!-- compiler plugin -->
+        <java.version>19</java.version>
+        <maven.compiler.source>19</maven.compiler.source>
+        <maven.compiler.target>19</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- MUST match artifact-id of the module, which builds the docker image -->
+        <docker.web.image.name>hexagonal-spring-ref-app</docker.web.image.name>
+        <!-- gives possibility to generate help chart, which uses previously released docker images, by adding -Ddocker.web.image.version=X.Y.Z -->
+        <docker.web.image.version>${project.version}</docker.web.image.version>
+
+        <docker.image.registry.snapshots>containerhub.internal.epo.org:7777</docker.image.registry.snapshots>
+
+        <!-- name of resulting application service (used in Dockerfile and for InSpec-tion) -->
+        <result.service.jar>hexagonal-spring-ref-app.jar</result.service.jar>
+        <artifactid.to_include>hexagonal-spring-ref-app-spring-boot-assembly</artifactid.to_include>
+        <result.cloudsql.instances>set-me-in-pipeline-yaml</result.cloudsql.instances>
+        <!-- name of the application, can be shared among a few components, e.g. name of Helm chart and Helm templates root folder  -->
+        <k8s.application.name>hexagonal-spring-ref-app</k8s.application.name>
+
+        <lombok.version>1.18.26</lombok.version>
+        <mapstruct.version>1.5.3.Final</mapstruct.version>
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+        <buildnumber-maven-plugin.version>1.4</buildnumber-maven-plugin.version>
+        <depgraph-maven-plugin.version>4.0.2</depgraph-maven-plugin.version>
+    </properties>
+
+    <modules>
+        <module>shared-kernel</module>
+        <module>application-core</module>
+        <module>api-adapter</module>
+        <module>in-memory-repositories</module>
+        <module>spring-boot-assembly</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <compilerArgs>--enable-preview</compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>${buildnumber-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <doCheck>false</doCheck>
+                    <doUpdate>false</doUpdate>
+                    <revisionOnScmFailure>true</revisionOnScmFailure>
+                    <shortRevisionLength>7</shortRevisionLength>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.ferstl</groupId>
+                <artifactId>depgraph-maven-plugin</artifactId>
+                <version>${depgraph-maven-plugin.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <developers>
+        <developer>
+            <id>em54029</id>
+            <name>Enrique Medina Montenegro</name>
+            <email>emedinamontenegro@epo.org</email>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+</project>

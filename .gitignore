@@ -1,0 +1,41 @@
+### IntelliJ
+/out/
+.idea
+*.iws
+*.iml
+.idea_modules/
+atlassian-ide-plugin.xml
+
+
+### Eclipse
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+.project
+*.launch
+.classpath
+.target
+
+
+### VS Code
+.vscode
+
+
+### Maven template
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties

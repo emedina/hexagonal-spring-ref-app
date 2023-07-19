@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.epo.cne</groupId>
+        <artifactId>hexagonal-spring-ref-app</artifactId>
+        <version>0.0.1</version>
+    </parent>
+
+    <artifactId>hexagonal-spring-ref-app-shared-kernel</artifactId>
+    <name>CNE - Hexagonal Spring Ref App - Shared kernel</name>
+
+    <properties>
+        <shared-kernel-validations.version>1.0.1</shared-kernel-validations.version>
+    </properties>
+
+    <dependencies>
+        <!-- Common dependencies -->
+        <dependency>
+            <groupId>org.epo.cne.sharedkernel</groupId>
+            <artifactId>shared-kernel-validations</artifactId>
+            <version>${shared-kernel-validations.version}</version>
+        </dependency>
+
+        <!-- Exceptional libraries -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

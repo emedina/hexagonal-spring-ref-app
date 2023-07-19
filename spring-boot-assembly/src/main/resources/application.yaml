@@ -1,0 +1,27 @@
+# Ref. App. configuration
+spring:
+  application:
+    name: hexagonal-spring-ref-app
+
+server:
+  port: 8080
+  max-http-header-size: 16KB
+  servlet:
+    context-path: /
+  use-forward-headers: true
+
+management:
+  security:
+    enabled: false
+  health:
+    vault:
+      enabled: false
+    redis:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,env
+    health:
+      show-details: always
+      show-components: always

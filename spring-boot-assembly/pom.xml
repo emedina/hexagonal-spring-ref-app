@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.epo.cne</groupId>
+        <artifactId>hexagonal-spring-ref-app</artifactId>
+        <version>0.0.1</version>
+    </parent>
+
+    <artifactId>hexagonal-spring-ref-app-spring-boot-assembly</artifactId>
+    <name>CNE - Hexagonal Spring Ref App - Spring Boot Assembly</name>
+
+    <properties>
+        <spring-boot.version>3.1.1</spring-boot.version>
+
+        <query-bus-spring-boot.version>1.0.0</query-bus-spring-boot.version>
+        <command-either-bus-spring-boot.version>1.0.2</command-either-bus-spring-boot.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <!-- Import dependency management from Spring Boot -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- Spring Boot dependencies -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- Ref App dependencies -->
+        <dependency>
+            <groupId>org.epo.cne</groupId>
+            <artifactId>hexagonal-spring-ref-app-api-adapter</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.epo.cne</groupId>
+            <artifactId>hexagonal-spring-ref-app-application-core-application</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.epo.cne</groupId>
+            <artifactId>hexagonal-spring-ref-app-in-memory-repositories</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- EPO dependencies -->
+        <dependency>
+            <groupId>org.epo.cne.query</groupId>
+            <artifactId>query-bus-spring-boot</artifactId>
+            <version>${query-bus-spring-boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.epo.cne.command</groupId>
+            <artifactId>command-either-bus-spring-boot</artifactId>
+            <version>${command-either-bus-spring-boot.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>
