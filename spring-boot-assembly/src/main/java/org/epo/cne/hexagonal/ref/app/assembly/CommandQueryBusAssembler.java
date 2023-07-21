@@ -1,6 +1,5 @@
 package org.epo.cne.hexagonal.ref.app.assembly;
 
-import org.epo.cne.command.spring.Registry;
 import org.epo.cne.command.spring.SpringCommandBus;
 import org.epo.cne.query.spring.SpringQueryBus;
 import org.epo.cne.sharedkernel.command.core.CommandBus;
@@ -19,7 +18,7 @@ class CommandQueryBusAssembler {
 
     @Bean
     public CommandBus commandBus(final ApplicationContext applicationContext) {
-        return new SpringCommandBus(new Registry(applicationContext));
+        return new SpringCommandBus(new org.epo.cne.command.spring.Registry(applicationContext));
     }
 
     @Bean

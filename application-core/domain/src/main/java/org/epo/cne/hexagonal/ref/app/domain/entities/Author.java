@@ -2,6 +2,7 @@ package org.epo.cne.hexagonal.ref.app.domain.entities;
 
 import io.vavr.control.Validation;
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
@@ -16,10 +17,13 @@ import static org.epo.cne.hexagonal.ref.app.shared.validation.Validations.valida
  */
 @Getter
 @Accessors(fluent = true)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class Author {
 
+    @EqualsAndHashCode.Include
     private final AuthorId id;
+
     private final PersonName name;
 
     public static Validation<Error, Author> validateThenCreate(final AuthorId id, final PersonName name) {

@@ -33,7 +33,7 @@ final class FindArticleHandler implements FindArticleUseCase {
         return ArticleId.validateThenCreate(query.id())
                 .toEither()
                 .flatMap(this.articleRepository::findById)
-                .map(ArticleMapper.INSTANCE::fromArticle);
+                .map(ArticleMapper.INSTANCE::toArticleDto);
     }
 
 }

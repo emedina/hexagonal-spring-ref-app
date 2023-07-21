@@ -1,6 +1,7 @@
 package org.epo.cne.hexagonal.ref.app.repositories;
 
 import io.vavr.control.Either;
+import io.vavr.control.Try;
 import lombok.RequiredArgsConstructor;
 import org.epo.cne.hexagonal.ref.app.domain.entities.Article;
 import org.epo.cne.hexagonal.ref.app.domain.entities.ArticleId;
@@ -30,9 +31,26 @@ class InMemoryArticleRepository implements ArticleRepository {
      */
     @Override
     public Either<Error, Article> findById(final ArticleId id) {
-        return this.articles.containsKey(id)
-                ? Either.right(this.articles.get(id))
-                : Either.left(new Error.BusinessError.UnknownArticle(id.value()));
+        return Try.of(() -> this.articles.containsKey(id))
+                .toEither()
+                .<Error>mapLeft(t -> new Error.TechnicalError.SomethingWentWrong(t.getMessage()))
+                .flatMap(exists -> exists ? Try.of(() -> this.articles.get(id)).toEither()
+                        .mapLeft(t -> new Error.TechnicalError.SomethingWentWrong(t.getMessage()))
+                        : Either.left(new Error.BusinessError.UnknownArticle(id.value())));
+    }
+
+    /**
+     * Saves an article, generating an identifier for it.
+     *
+     * @param article the article to save
+     * @return an error if the article could not be saved
+     */
+    @Override
+    public Either<Error, Void> save(final Article article) {
+        return Try.of(() -> this.articles.put(article.id(), article))
+                .toEither()
+                .<Error>mapLeft(t -> new Error.TechnicalError.SomethingWentWrong(t.getMessage()))
+                .map(v -> null);
     }
 
 }

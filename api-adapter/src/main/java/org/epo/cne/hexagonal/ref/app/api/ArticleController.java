@@ -1,7 +1,9 @@
 package org.epo.cne.hexagonal.ref.app.api;
 
+import io.vavr.control.Either;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.epo.cne.hexagonal.ref.app.application.command.CreateArticleCommand;
 import org.epo.cne.hexagonal.ref.app.application.query.FindArticleQuery;
 import org.epo.cne.hexagonal.ref.app.shared.dto.ArticleDTO;
 import org.epo.cne.sharedkernel.command.core.CommandBus;
@@ -48,7 +50,13 @@ final class ArticleController implements ArticleApi {
     @Override
     public ResponseEntity<?> create(@RequestBody final ArticleRequest articleRequest,
                                     final HttpServletRequest request) {
-        return ResponseEntity.ok(null);
+        return CreateArticleCommand.validateThenCreate(articleRequest.getId(), articleRequest.getAuthorId(),
+                        articleRequest.getTitle(), articleRequest.getContent())
+                .toEither()
+                .peek(this.commandBus::execute)
+                .mapLeft(e -> this.apiErrorHandler.mapErrorToProblemDetail(e, request))
+                .fold(lpd -> ApiResultUtils.createFailureResponse(lpd, URI.create(request.getRequestURI())),
+                        a -> ApiResultUtils.createSuccessResponse(HttpStatus.CREATED, null));
     }
 
 }

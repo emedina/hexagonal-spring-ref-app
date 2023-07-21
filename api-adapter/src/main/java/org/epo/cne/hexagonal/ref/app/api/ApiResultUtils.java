@@ -34,7 +34,10 @@ final class ApiResultUtils {
      * @return the failure response
      */
     static ResponseEntity<List<ProblemDetail>> createFailureResponse(final List<ProblemDetail> problemDetails, final URI uri) {
-        return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).contentType(MediaType.APPLICATION_JSON)
+        return ResponseEntity
+                // If there is only one problem, and it has a status code, return that status code.
+                .status(problemDetails.size() == 1 ? HttpStatusCode.valueOf(problemDetails.get(0).getStatus()) : HttpStatus.I_AM_A_TEAPOT)
+                .contentType(MediaType.APPLICATION_JSON)
                 .body(problemDetails.stream().map(detail -> {
                     detail.setType(uri);
                     return detail;

@@ -26,7 +26,7 @@
         <lombok.version>1.18.26</lombok.version>
 
         <shared-kernel-domain.version>1.0.1</shared-kernel-domain.version>
-        <shared-kernel-command-bus.version>1.0.1</shared-kernel-command-bus.version>
+        <shared-kernel-command-either-bus.version>1.0.1</shared-kernel-command-either-bus.version>
         <shared-kernel-query-bus.version>1.0.1</shared-kernel-query-bus.version>
     </properties>
 
@@ -44,8 +44,8 @@
         </dependency>
         <dependency>
             <groupId>org.epo.cne.sharedkernel</groupId>
-            <artifactId>shared-kernel-command-bus</artifactId>
-            <version>${shared-kernel-command-bus.version}</version>
+            <artifactId>shared-kernel-command-either-bus</artifactId>
+            <version>${shared-kernel-command-either-bus.version}</version>
         </dependency>
 
         <!-- Exceptional/Agreed 3rd party libraries -->

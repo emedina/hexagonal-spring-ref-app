@@ -19,4 +19,9 @@ public interface ArticleRepository {
      */
     Either<Error, Article> findById(final ArticleId id);
 
+    /**
+     * Saves an article.
+     */
+    Either<Error, Void> save(final Article article);
+
 }

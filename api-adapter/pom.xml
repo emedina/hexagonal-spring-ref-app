@@ -20,7 +20,7 @@
         <mapstruct.version>1.5.3.Final</mapstruct.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
 
-        <shared-kernel-command-bus.version>1.0.1</shared-kernel-command-bus.version>
+        <shared-kernel-command-either-bus.version>1.0.1</shared-kernel-command-either-bus.version>
         <shared-kernel-query-bus.version>1.0.1</shared-kernel-query-bus.version>
     </properties>
 
@@ -77,8 +77,8 @@
         </dependency>
         <dependency>
             <groupId>org.epo.cne.sharedkernel</groupId>
-            <artifactId>shared-kernel-command-bus</artifactId>
-            <version>${shared-kernel-command-bus.version}</version>
+            <artifactId>shared-kernel-command-either-bus</artifactId>
+            <version>${shared-kernel-command-either-bus.version}</version>
         </dependency>
 
         <dependency>
