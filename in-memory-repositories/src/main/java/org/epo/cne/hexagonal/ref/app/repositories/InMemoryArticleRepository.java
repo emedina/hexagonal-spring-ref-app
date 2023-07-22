@@ -40,7 +40,7 @@ class InMemoryArticleRepository implements ArticleRepository {
     }
 
     /**
-     * Saves an article, generating an identifier for it.
+     * Saves an article.
      *
      * @param article the article to save
      * @return an error if the article could not be saved
@@ -50,7 +50,41 @@ class InMemoryArticleRepository implements ArticleRepository {
         return Try.of(() -> this.articles.put(article.id(), article))
                 .toEither()
                 .<Error>mapLeft(t -> new Error.TechnicalError.SomethingWentWrong(t.getMessage()))
-                .map(v -> null);
+                .map(a -> null);
+    }
+
+    /**
+     * Updates an article.
+     *
+     * @param article the article to update
+     * @return an error if the article could not be updated
+     */
+    @Override
+    public Either<Error, Void> update(final Article article) {
+        return Try.of(() -> this.articles.containsKey(article.id()))
+                .toEither()
+                .<Error>mapLeft(t -> new Error.TechnicalError.SomethingWentWrong(t.getMessage()))
+                .flatMap(exists -> exists ? Try.of(() -> this.articles.put(article.id(), article)).toEither()
+                        .<Error>mapLeft(t -> new Error.TechnicalError.SomethingWentWrong(t.getMessage()))
+                        .map(a -> null)
+                        : Either.left(new Error.BusinessError.UnknownArticle(article.id().value())));
+    }
+
+    /**
+     * Deletes an article
+     *
+     * @param id the article to delete
+     * @return an error if the article could not be deleted
+     */
+    @Override
+    public Either<Error, Void> delete(final ArticleId id) {
+        return Try.of(() -> this.articles.containsKey(id))
+                .toEither()
+                .<Error>mapLeft(t -> new Error.TechnicalError.SomethingWentWrong(t.getMessage()))
+                .flatMap(exists -> exists ? Try.of(() -> this.articles.remove(id)).toEither()
+                        .<Error>mapLeft(t -> new Error.TechnicalError.SomethingWentWrong(t.getMessage()))
+                        .map(a -> null)
+                        : Either.left(new Error.BusinessError.UnknownArticle(id.value())));
     }
 
 }

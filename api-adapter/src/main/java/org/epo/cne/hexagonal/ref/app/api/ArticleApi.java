@@ -7,9 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -50,23 +48,45 @@ sealed interface ArticleApi permits ArticleController {
     })
     ResponseEntity<?> get(final String articleId, final HttpServletRequest request);
 
-    /**
-     * Creates a new article.
-     *
-     * @param articleRequest the article request
-     * @return the article identifier
-     */
     @PostMapping
     @Operation(
             summary = "Creates an article",
             description = "Creates an article"
     )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "The article was created successfully"),
+            @ApiResponse(responseCode = "201", description = "The article was created successfully"),
             @ApiResponse(responseCode = "400", description = "The provided data is invalid"),
             @ApiResponse(responseCode = "500", description = "Internal server error"),
             @ApiResponse(responseCode = "503", description = "Service unavailable")
     })
     ResponseEntity<?> create(final ArticleRequest articleRequest, final HttpServletRequest request);
+
+    @PutMapping(path = "/{articleId}")
+    @Operation(
+            summary = "Updates an article",
+            description = "Updates an article"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "The article was updated successfully"),
+            @ApiResponse(responseCode = "400", description = "The provided data is invalid"),
+            @ApiResponse(responseCode = "404", description = "The identifier is unknown to the system"),
+            @ApiResponse(responseCode = "500", description = "Internal server error"),
+            @ApiResponse(responseCode = "503", description = "Service unavailable")
+    })
+    ResponseEntity<?> update(final ArticleRequest articleRequest, final HttpServletRequest request);
+
+    @DeleteMapping(path = "/{articleId}")
+    @Operation(
+            summary = "Deletes an article",
+            description = "Deletes an article"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "The article was deleted successfully"),
+            @ApiResponse(responseCode = "400", description = "The provided data is invalid"),
+            @ApiResponse(responseCode = "404", description = "The identifier is unknown to the system"),
+            @ApiResponse(responseCode = "500", description = "Internal server error"),
+            @ApiResponse(responseCode = "503", description = "Service unavailable")
+    })
+    ResponseEntity<?> delete(final String articleId, final HttpServletRequest request);
 
 }

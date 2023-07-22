@@ -24,4 +24,14 @@ public interface ArticleRepository {
      */
     Either<Error, Void> save(final Article article);
 
+    /**
+     * Updates an article.
+     */
+    Either<Error, Void> update(final Article article);
+
+    /**
+     * Deletes an article.
+     */
+    Either<Error, Void> delete(final ArticleId id);
+
 }
