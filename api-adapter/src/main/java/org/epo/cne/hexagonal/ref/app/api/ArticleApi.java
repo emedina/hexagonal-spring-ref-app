@@ -34,6 +34,18 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 })
 sealed interface ArticleApi permits ArticleController {
 
+    @GetMapping
+    @Operation(
+            summary = "Retrieve all articles",
+            description = "Retrieves all articles"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "All articles that were found"),
+            @ApiResponse(responseCode = "500", description = "Internal server error"),
+            @ApiResponse(responseCode = "503", description = "Service unavailable")
+    })
+    ResponseEntity<?> get(final HttpServletRequest request);
+
     @GetMapping(path = "/{articleId}")
     @Operation(
             summary = "Retrieve an article by its identifier",
@@ -46,7 +58,7 @@ sealed interface ArticleApi permits ArticleController {
             @ApiResponse(responseCode = "500", description = "Internal server error"),
             @ApiResponse(responseCode = "503", description = "Service unavailable")
     })
-    ResponseEntity<?> get(final String articleId, final HttpServletRequest request);
+    ResponseEntity<?> find(final String articleId, final HttpServletRequest request);
 
     @PostMapping
     @Operation(

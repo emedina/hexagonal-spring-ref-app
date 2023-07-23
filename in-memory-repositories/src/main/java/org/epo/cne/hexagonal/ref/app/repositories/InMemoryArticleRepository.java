@@ -9,6 +9,7 @@ import org.epo.cne.hexagonal.ref.app.domain.repositories.ArticleRepository;
 import org.epo.cne.hexagonal.ref.app.shared.error.Error;
 import org.epo.cne.sharedkernel.application.annotation.Adapter;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -22,6 +23,19 @@ import java.util.concurrent.ConcurrentHashMap;
 class InMemoryArticleRepository implements ArticleRepository {
 
     final Map<ArticleId, Article> articles = new ConcurrentHashMap<>();
+
+    /**
+     * Gets all the articles.
+     *
+     * @return either the list of articles or an error
+     */
+    @Override
+    public Either<Error, List<Article>> findAll() {
+        return Try.of(() -> this.articles.values())
+                .toEither()
+                .<Error>mapLeft(t -> new Error.TechnicalError.SomethingWentWrong(t.getMessage()))
+                .map(List::copyOf);
+    }
 
     /**
      * Finds an article by its identifier.

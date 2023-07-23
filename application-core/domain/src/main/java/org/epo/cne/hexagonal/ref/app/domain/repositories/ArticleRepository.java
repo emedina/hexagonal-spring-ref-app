@@ -6,6 +6,8 @@ import org.epo.cne.hexagonal.ref.app.domain.entities.ArticleId;
 import org.epo.cne.hexagonal.ref.app.shared.error.Error;
 import org.epo.cne.sharedkernel.domain.repository.annotation.Repository;
 
+import java.util.List;
+
 /**
  * A repository for articles.
  *
@@ -13,6 +15,11 @@ import org.epo.cne.sharedkernel.domain.repository.annotation.Repository;
  */
 @Repository
 public interface ArticleRepository {
+
+    /**
+     * Gets all the articles.
+     */
+    Either<Error, List<Article>> findAll();
 
     /**
      * Finds an article by its identifier.

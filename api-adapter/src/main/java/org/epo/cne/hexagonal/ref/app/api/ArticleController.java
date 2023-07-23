@@ -7,6 +7,7 @@ import org.epo.cne.hexagonal.ref.app.application.command.CreateArticleCommand;
 import org.epo.cne.hexagonal.ref.app.application.command.DeleteArticleCommand;
 import org.epo.cne.hexagonal.ref.app.application.command.UpdateArticleCommand;
 import org.epo.cne.hexagonal.ref.app.application.query.FindArticleQuery;
+import org.epo.cne.hexagonal.ref.app.application.query.GetAllArticlesQuery;
 import org.epo.cne.hexagonal.ref.app.shared.dto.ArticleDTO;
 import org.epo.cne.hexagonal.ref.app.shared.error.Error;
 import org.epo.cne.sharedkernel.command.core.CommandBus;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
+import java.util.List;
 
 /**
  * Implementation of the API interface using a REST controller.
@@ -34,11 +36,25 @@ final class ArticleController implements ArticleApi {
     private final ApiErrorHandler apiErrorHandler;
 
     /**
-     * @see ArticleApi#get(String, HttpServletRequest)
+     * @see ArticleApi#get(HttpServletRequest)
      */
     @Override
-    public ResponseEntity<?> get(@PathVariable("articleId") final String articleId,
-                                 final HttpServletRequest request) {
+    public ResponseEntity<?> get(final HttpServletRequest request) {
+        return GetAllArticlesQuery.validateThenCreate()
+                .toEither()
+                .<List<ArticleDTO>>flatMap(this.queryBus::query)
+                .mapLeft(e -> this.apiErrorHandler.mapErrorToProblemDetail(e, request))
+                .fold(lpd -> ApiResultUtils.createFailureResponse(lpd, URI.create(request.getRequestURI())),
+                        a -> ApiResultUtils.createSuccessListResponse(HttpStatus.OK,
+                                a.stream().<ApiResponse>map(ApiMapper.INSTANCE::toArticleResponse).toList()));
+    }
+
+    /**
+     * @see ArticleApi#find(String, HttpServletRequest)
+     */
+    @Override
+    public ResponseEntity<?> find(@PathVariable("articleId") final String articleId,
+                                  final HttpServletRequest request) {
         return FindArticleQuery.validateThenCreate(articleId)
                 .toEither()
                 .<ArticleDTO>flatMap(this.queryBus::query)
