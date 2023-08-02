@@ -10,6 +10,7 @@ import org.epo.cne.hexagonal.ref.app.domain.entities.ArticleId;
 import org.epo.cne.hexagonal.ref.app.domain.repositories.ArticleRepository;
 import org.epo.cne.hexagonal.ref.app.shared.error.Error;
 import org.epo.cne.sharedkernel.application.annotation.ApplicationService;
+import org.epo.cne.sharedkernel.transactional.Transactional;
 
 /**
  * Orchestration logic for the use case to delete an article.
@@ -30,6 +31,7 @@ final class DeleteArticleHandler implements DeleteArticleUseCase {
      * @return an error if anything goes wrong
      */
     @Override
+    @Transactional
     public Either<Error, Void> handle(final DeleteArticleCommand command) {
         return ArticleId.validateThenCreate(command.id())
                 .toEither()

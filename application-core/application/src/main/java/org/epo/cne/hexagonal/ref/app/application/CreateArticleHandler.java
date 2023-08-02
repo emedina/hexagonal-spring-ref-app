@@ -7,6 +7,7 @@ import org.epo.cne.hexagonal.ref.app.application.ports.in.CreateArticleUseCase;
 import org.epo.cne.hexagonal.ref.app.domain.repositories.ArticleRepository;
 import org.epo.cne.hexagonal.ref.app.shared.error.Error;
 import org.epo.cne.sharedkernel.application.annotation.ApplicationService;
+import org.epo.cne.sharedkernel.transactional.Transactional;
 
 /**
  * Orchestration logic for the use case to create an article.
@@ -27,6 +28,7 @@ final class CreateArticleHandler implements CreateArticleUseCase {
      * @return an error if anything goes wrong
      */
     @Override
+    @Transactional
     public Either<Error, Void> handle(final CreateArticleCommand command) {
         return ArticleMapper.INSTANCE.toArticle(command)
                 .toEither()

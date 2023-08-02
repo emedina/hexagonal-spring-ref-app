@@ -8,6 +8,7 @@ import org.epo.cne.hexagonal.ref.app.application.ports.in.UpdateArticleUseCase;
 import org.epo.cne.hexagonal.ref.app.domain.repositories.ArticleRepository;
 import org.epo.cne.hexagonal.ref.app.shared.error.Error;
 import org.epo.cne.sharedkernel.application.annotation.ApplicationService;
+import org.epo.cne.sharedkernel.transactional.Transactional;
 
 /**
  * Orchestration logic for the use case to update an article.
@@ -28,6 +29,7 @@ final class UpdateArticleHandler implements UpdateArticleUseCase {
      * @return an error if anything goes wrong
      */
     @Override
+    @Transactional
     public Either<Error, Void> handle(final UpdateArticleCommand command) {
         return ArticleMapper.INSTANCE.toArticle(command)
                 .toEither()

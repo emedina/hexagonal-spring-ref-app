@@ -8,6 +8,7 @@ import org.epo.cne.hexagonal.ref.app.domain.repositories.ArticleRepository;
 import org.epo.cne.hexagonal.ref.app.shared.dto.ArticleDTO;
 import org.epo.cne.hexagonal.ref.app.shared.error.Error;
 import org.epo.cne.sharedkernel.application.annotation.ApplicationService;
+import org.epo.cne.sharedkernel.transactional.Transactional;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ final class GetAllArticlesHandler implements GetAllArticlesUseCase {
      * @return either the list of articles or an error
      */
     @Override
+    @Transactional(readOnly = true)
     public Either<Error, List<ArticleDTO>> handle(final GetAllArticlesQuery query) {
         return this.articleRepository.findAll()
                 .map(la -> la.stream().map(ArticleMapper.INSTANCE::toArticleDto).toList());

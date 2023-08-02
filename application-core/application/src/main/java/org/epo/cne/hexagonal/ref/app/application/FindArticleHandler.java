@@ -9,6 +9,7 @@ import org.epo.cne.hexagonal.ref.app.domain.repositories.ArticleRepository;
 import org.epo.cne.hexagonal.ref.app.shared.dto.ArticleDTO;
 import org.epo.cne.hexagonal.ref.app.shared.error.Error;
 import org.epo.cne.sharedkernel.application.annotation.ApplicationService;
+import org.epo.cne.sharedkernel.transactional.Transactional;
 
 /**
  * Orchestration logic for the use case to find an article by its identifier.
@@ -29,6 +30,7 @@ final class FindArticleHandler implements FindArticleUseCase {
      * @return either the article or an error
      */
     @Override
+    @Transactional(readOnly = true)
     public Either<Error, ArticleDTO> handle(final FindArticleQuery query) {
         return ArticleId.validateThenCreate(query.id())
                 .toEither()
