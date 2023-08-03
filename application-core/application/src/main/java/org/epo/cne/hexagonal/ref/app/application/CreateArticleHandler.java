@@ -4,6 +4,7 @@ import io.vavr.control.Either;
 import lombok.RequiredArgsConstructor;
 import org.epo.cne.hexagonal.ref.app.application.command.CreateArticleCommand;
 import org.epo.cne.hexagonal.ref.app.application.ports.in.CreateArticleUseCase;
+import org.epo.cne.hexagonal.ref.app.application.ports.out.AuthorOutputPort;
 import org.epo.cne.hexagonal.ref.app.domain.repositories.ArticleRepository;
 import org.epo.cne.hexagonal.ref.app.shared.error.Error;
 import org.epo.cne.sharedkernel.application.annotation.ApplicationService;
@@ -19,6 +20,7 @@ import org.epo.cne.sharedkernel.transactional.Transactional;
 @RequiredArgsConstructor
 final class CreateArticleHandler implements CreateArticleUseCase {
 
+    private final AuthorOutputPort authorOutputPort;
     private final ArticleRepository articleRepository;
 
     /**
@@ -30,8 +32,8 @@ final class CreateArticleHandler implements CreateArticleUseCase {
     @Override
     @Transactional
     public Either<Error, Void> handle(final CreateArticleCommand command) {
-        return ArticleMapper.INSTANCE.toArticle(command)
-                .toEither()
+        return this.authorOutputPort.lookupAuthor(command.authorId())
+                .flatMap(author -> ArticleMapper.INSTANCE.toArticle(command, author).toEither())
                 .flatMap(this.articleRepository::save);
     }
 
