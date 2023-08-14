@@ -30,6 +30,7 @@ class AuthorExternalAPIAdapter implements AuthorOutputPort {
     @Override
     public Either<Error, AuthorDTO> lookupAuthor(String id) {
         // Pretend we are calling an external API...
+        // this.webClient.get().uri("https://api.example.com/authors/{id}", id).retrieve().bodyToMono(AuthorDTO.class).block();
         return Either.right(new AuthorDTO(id, "William Shakespeare"));
     }
 

@@ -31,20 +31,6 @@
         <maven.compiler.target>19</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <!-- MUST match artifact-id of the module, which builds the docker image -->
-        <docker.web.image.name>hexagonal-spring-ref-app</docker.web.image.name>
-        <!-- gives possibility to generate help chart, which uses previously released docker images, by adding -Ddocker.web.image.version=X.Y.Z -->
-        <docker.web.image.version>${project.version}</docker.web.image.version>
-
-        <docker.image.registry.snapshots>containerhub.internal.epo.org:7777</docker.image.registry.snapshots>
-
-        <!-- name of resulting application service (used in Dockerfile and for InSpec-tion) -->
-        <result.service.jar>hexagonal-spring-ref-app.jar</result.service.jar>
-        <artifactid.to_include>hexagonal-spring-ref-app-spring-boot-assembly</artifactid.to_include>
-        <result.cloudsql.instances>set-me-in-pipeline-yaml</result.cloudsql.instances>
-        <!-- name of the application, can be shared among a few components, e.g. name of Helm chart and Helm templates root folder  -->
-        <k8s.application.name>hexagonal-spring-ref-app</k8s.application.name>
-
         <lombok.version>1.18.26</lombok.version>
         <mapstruct.version>1.5.3.Final</mapstruct.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
