@@ -71,7 +71,7 @@ sealed interface ArticleApi permits ArticleController {
             @ApiResponse(responseCode = "500", description = "Internal server error"),
             @ApiResponse(responseCode = "503", description = "Service unavailable")
     })
-    ResponseEntity<?> create(final ArticleRequest articleRequest, final HttpServletRequest request);
+    ResponseEntity<?> create(final ApiRequest.Article articleRequest, final HttpServletRequest request);
 
     @PutMapping(path = "/{articleId}")
     @Operation(
@@ -85,7 +85,7 @@ sealed interface ArticleApi permits ArticleController {
             @ApiResponse(responseCode = "500", description = "Internal server error"),
             @ApiResponse(responseCode = "503", description = "Service unavailable")
     })
-    ResponseEntity<?> update(final ArticleRequest articleRequest, final HttpServletRequest request);
+    ResponseEntity<?> update(final ApiRequest.Article articleRequest, final HttpServletRequest request);
 
     @DeleteMapping(path = "/{articleId}")
     @Operation(

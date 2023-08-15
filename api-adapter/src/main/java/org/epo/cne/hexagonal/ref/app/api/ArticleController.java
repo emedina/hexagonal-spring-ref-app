@@ -64,13 +64,13 @@ final class ArticleController implements ArticleApi {
     }
 
     /**
-     * @see ArticleApi#create(ArticleRequest, HttpServletRequest)
+     * @see ArticleApi#create(ApiRequest.Article, HttpServletRequest)
      */
     @Override
-    public ResponseEntity<?> create(@RequestBody final ArticleRequest articleRequest,
+    public ResponseEntity<?> create(@RequestBody final ApiRequest.Article articleRequest,
                                     final HttpServletRequest request) {
-        return CreateArticleCommand.validateThenCreate(articleRequest.getId(), articleRequest.getAuthorId(),
-                        articleRequest.getTitle(), articleRequest.getContent())
+        return CreateArticleCommand.validateThenCreate(articleRequest.id(), articleRequest.authorId(),
+                        articleRequest.title(), articleRequest.content())
                 .toEither()
                 .flatMap(cac -> (Either<Error, Void>) this.commandBus.execute(cac))
                 .mapLeft(e -> this.apiErrorHandler.mapErrorToProblemDetail(e, request))
@@ -79,12 +79,12 @@ final class ArticleController implements ArticleApi {
     }
 
     /**
-     * @see ArticleApi#update(ArticleRequest, HttpServletRequest)
+     * @see ArticleApi#update(ApiRequest.Article, HttpServletRequest)
      */
     @Override
-    public ResponseEntity<?> update(@RequestBody final ArticleRequest articleRequest, final HttpServletRequest request) {
-        return UpdateArticleCommand.validateThenCreate(articleRequest.getId(), articleRequest.getAuthorId(),
-                        articleRequest.getTitle(), articleRequest.getContent())
+    public ResponseEntity<?> update(@RequestBody final ApiRequest.Article articleRequest, final HttpServletRequest request) {
+        return UpdateArticleCommand.validateThenCreate(articleRequest.id(), articleRequest.authorId(),
+                        articleRequest.title(), articleRequest.content())
                 .toEither()
                 .flatMap(uac -> (Either<Error, Void>) this.commandBus.execute(uac))
                 .mapLeft(e -> this.apiErrorHandler.mapErrorToProblemDetail(e, request))
