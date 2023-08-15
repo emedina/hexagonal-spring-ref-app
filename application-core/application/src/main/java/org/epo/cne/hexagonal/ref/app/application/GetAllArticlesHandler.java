@@ -13,7 +13,7 @@ import org.epo.cne.sharedkernel.transactional.Transactional;
 import java.util.List;
 
 /**
- * Orchestration logic for the use case to find an article by its identifier.
+ * Orchestration logic for the use case to find all the available articles.
  *
  * @author Enrique Medina Montenegro (em54029)
  * @see ApplicationService
