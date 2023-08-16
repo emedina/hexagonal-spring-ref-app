@@ -26,9 +26,9 @@
 
     <properties>
         <!-- compiler plugin -->
-        <java.version>19</java.version>
-        <maven.compiler.source>19</maven.compiler.source>
-        <maven.compiler.target>19</maven.compiler.target>
+        <java.version>20</java.version>
+        <maven.compiler.source>20</maven.compiler.source>
+        <maven.compiler.target>20</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <lombok.version>1.18.26</lombok.version>
