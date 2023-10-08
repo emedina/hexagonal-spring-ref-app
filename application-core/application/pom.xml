@@ -89,8 +89,6 @@
                         </path>
                     </annotationProcessorPaths>
                     <parameters>true</parameters>
-                    <compilerArgs>--enable-preview</compilerArgs>
-                    <enablePreview>true</enablePreview>
                 </configuration>
             </plugin>
         </plugins>

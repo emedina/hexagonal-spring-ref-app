@@ -23,7 +23,6 @@
 
     <properties>
         <vavr.version>0.10.4</vavr.version>
-        <lombok.version>1.18.26</lombok.version>
 
         <shared-kernel-domain.version>1.0.1</shared-kernel-domain.version>
         <shared-kernel-command-either-bus.version>1.0.1</shared-kernel-command-either-bus.version>

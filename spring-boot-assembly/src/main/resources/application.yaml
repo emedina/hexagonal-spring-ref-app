@@ -4,7 +4,7 @@ spring:
     name: hexagonal-spring-ref-app
 
 server:
-  port: 8080
+  port: 8085
   max-http-header-size: 16KB
   servlet:
     context-path: /
@@ -25,3 +25,10 @@ management:
     health:
       show-details: always
       show-components: always
+
+features:
+  virtual-threads: true
+
+logging:
+  level:
+    org.epo.cne.hexagonal.ref.app.api: TRACE

@@ -3,6 +3,7 @@ package org.epo.cne.hexagonal.ref.app.api;
 import io.vavr.control.Either;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.epo.cne.hexagonal.ref.app.application.command.CreateArticleCommand;
 import org.epo.cne.hexagonal.ref.app.application.command.DeleteArticleCommand;
 import org.epo.cne.hexagonal.ref.app.application.command.UpdateArticleCommand;
@@ -26,6 +27,7 @@ import java.util.List;
  *
  * @author Enrique Medina Montenegro (em54029)
  */
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 final class ArticleController implements ArticleApi {
@@ -40,6 +42,7 @@ final class ArticleController implements ArticleApi {
      */
     @Override
     public ResponseEntity<?> get(final HttpServletRequest request) {
+        log.atTrace().log(Thread.currentThread().getName());
         return GetAllArticlesQuery.validateThenCreate()
                 .toEither()
                 .<List<ArticleDTO>>flatMap(this.queryBus::query)
