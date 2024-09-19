@@ -44,7 +44,7 @@ public class Article {
                 .mapError(e -> new Error.ValidationErrors(e.toJavaList()));
     }
 
-    public Boolean validateEligibilityForPublication() {
+    public Boolean enforceEligibilityForPublication() {
         this.verifyForPlagiarism();
         this.validateTitleLength();
         this.validateContentLength();
