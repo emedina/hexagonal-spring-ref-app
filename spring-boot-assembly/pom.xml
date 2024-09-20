@@ -5,20 +5,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.epo.cne</groupId>
+        <groupId>com.emedina</groupId>
         <artifactId>hexagonal-spring-ref-app</artifactId>
         <version>0.0.1</version>
     </parent>
 
+    <name>Hexagonal Spring Ref App - Spring Boot Assembly</name>
     <artifactId>hexagonal-spring-ref-app-spring-boot-assembly</artifactId>
-    <name>CNE - Hexagonal Spring Ref App - Spring Boot Assembly</name>
 
     <properties>
-        <spring-boot.version>3.1.4</spring-boot.version>
-        <native-maven-plugin.version>0.9.27</native-maven-plugin.version>
+        <spring-boot.version>3.3.4</spring-boot.version>
 
         <query-bus-spring-boot.version>1.0.0</query-bus-spring-boot.version>
-        <command-either-bus-spring-boot.version>1.0.2</command-either-bus-spring-boot.version>
+        <command-either-bus-spring-boot.version>1.0.0</command-either-bus-spring-boot.version>
     </properties>
 
     <dependencyManagement>
@@ -51,34 +50,34 @@
 
         <!-- Ref App dependencies -->
         <dependency>
-            <groupId>org.epo.cne</groupId>
+            <groupId>com.emedina</groupId>
             <artifactId>hexagonal-spring-ref-app-api-adapter</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.epo.cne</groupId>
+            <groupId>com.emedina</groupId>
             <artifactId>hexagonal-spring-ref-app-application-core-application</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.epo.cne</groupId>
+            <groupId>com.emedina</groupId>
             <artifactId>hexagonal-spring-ref-app-in-memory-repositories</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.epo.cne</groupId>
+            <groupId>com.emedina</groupId>
             <artifactId>hexagonal-spring-ref-app-author-external-adapter</artifactId>
             <version>${project.version}</version>
         </dependency>
 
-        <!-- EPO dependencies -->
+        <!-- Shared dependencies -->
         <dependency>
-            <groupId>org.epo.cne.query</groupId>
+            <groupId>com.emedina.query</groupId>
             <artifactId>query-bus-spring-boot</artifactId>
             <version>${query-bus-spring-boot.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.epo.cne.command</groupId>
+            <groupId>com.emedina.command</groupId>
             <artifactId>command-either-bus-spring-boot</artifactId>
             <version>${command-either-bus-spring-boot.version}</version>
         </dependency>
@@ -128,89 +127,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>native</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <version>${maven-jar-plugin.version}</version>
-                        <configuration>
-                            <archive>
-                                <manifestEntries>
-                                    <Spring-Boot-Native-Processed>true</Spring-Boot-Native-Processed>
-                                </manifestEntries>
-                            </archive>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-maven-plugin</artifactId>
-                        <version>${spring-boot.version}</version>
-                        <executions>
-                            <!-- Execution for Spring Boot process-aot goal -->
-                            <execution>
-                                <id>process-aot</id>
-                                <goals>
-                                    <goal>process-aot</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>repackage</id>
-                                <goals>
-                                    <goal>repackage</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <addResources>true</addResources>
-                            <image>
-                                <builder>paketobuildpacks/builder:tiny</builder>
-                                <buildpacks>
-                                    <buildpack>gcr.io/paketo-buildpacks/amazon-corretto</buildpack>
-                                    <buildpack>gcr.io/paketo-buildpacks/java</buildpack>
-                                </buildpacks>
-                                <env>
-                                    <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
-                                    <BP_JVM_VERSION>${java.version}</BP_JVM_VERSION>
-                                    <BPE_DELIM_JAVA_TOOL_OPTIONS xml:space="preserve"> </BPE_DELIM_JAVA_TOOL_OPTIONS>
-                                    <BPE_APPEND_JAVA_TOOL_OPTIONS>-XX:+HeapDumpOnOutOfMemoryError
-                                    </BPE_APPEND_JAVA_TOOL_OPTIONS>
-                                </env>
-                                <name>
-                                    ${docker.image.registry.snapshots}/${docker.web.image.name}:${project.version}
-                                </name>
-                                <publish>true</publish>
-                            </image>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.graalvm.buildtools</groupId>
-                        <artifactId>native-maven-plugin</artifactId>
-                        <version>${native-maven-plugin.version}</version>
-                        <configuration>
-                            <classesDirectory>${project.build.outputDirectory}</classesDirectory>
-                            <metadataRepository>
-                                <enabled>true</enabled>
-                            </metadataRepository>
-                            <requiredVersion>22.3</requiredVersion>
-                        </configuration>
-                        <executions>
-                            <!-- Execution for Native Build Tools add-reachability-metadata goal -->
-                            <execution>
-                                <id>add-reachability-metadata</id>
-                                <goals>
-                                    <goal>add-reachability-metadata</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 
 </project>

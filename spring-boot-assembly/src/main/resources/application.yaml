@@ -31,4 +31,4 @@ features:
 
 logging:
   level:
-    org.epo.cne.hexagonal.ref.app.api: TRACE
+    com.emedina.hexagonal.ref.app.api: TRACE

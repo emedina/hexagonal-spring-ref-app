@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.epo.cne</groupId>
+        <groupId>com.emedina</groupId>
         <artifactId>hexagonal-spring-ref-app</artifactId>
         <version>0.0.1</version>
     </parent>
 
+    <name>Hexagonal Spring Ref App - External Adapter for Authors</name>
     <artifactId>hexagonal-spring-ref-app-author-external-adapter</artifactId>
-    <name>CNE - Hexagonal Spring Ref App - External Adapter for Authors</name>
 
     <properties>
         <spring.version>6.0.12</spring.version>
@@ -19,7 +19,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.epo.cne</groupId>
+            <groupId>com.emedina</groupId>
             <artifactId>hexagonal-spring-ref-app-application-core-output-ports</artifactId>
             <version>${project.version}</version>
         </dependency>

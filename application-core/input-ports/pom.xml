@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.epo.cne</groupId>
+        <groupId>com.emedina</groupId>
         <artifactId>hexagonal-spring-ref-app-application-core</artifactId>
         <version>0.0.1</version>
     </parent>
 
+    <name>Hexagonal Spring Ref App - Application Core - Input Ports</name>
     <artifactId>hexagonal-spring-ref-app-application-core-input-ports</artifactId>
-    <name>CNE - Hexagonal Spring Ref App - Application Core - Input Ports</name>
 
 </project>
