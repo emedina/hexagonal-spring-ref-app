@@ -1,13 +1,13 @@
 package com.emedina.hexagonal.ref.app.external;
 
-import io.vavr.control.Either;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import com.emedina.hexagonal.ref.app.application.ports.out.AuthorOutputPort;
 import com.emedina.hexagonal.ref.app.shared.dto.AuthorDTO;
 import com.emedina.hexagonal.ref.app.shared.error.Error;
 import com.emedina.sharedkernel.application.annotation.Adapter;
-import org.springframework.web.reactive.function.client.WebClient;
+import io.vavr.control.Either;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.client.RestClient;
 
 /**
  * Implementation of {@link AuthorOutputPort} that uses an external API to fetch information about authors.
@@ -19,7 +19,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 @RequiredArgsConstructor
 class AuthorExternalAPIAdapter implements AuthorOutputPort {
 
-    private final WebClient webClient;
+    private final RestClient restClient;
 
     /**
      * Lookup the author with the given id.
@@ -30,7 +30,7 @@ class AuthorExternalAPIAdapter implements AuthorOutputPort {
     @Override
     public Either<Error, AuthorDTO> lookupAuthor(String id) {
         // Pretend we are calling an external API...
-        // this.webClient.get().uri("https://api.example.com/authors/{id}", id).retrieve().bodyToMono(AuthorDTO.class).block();
+        // this.restClient.get().uri("https://api.example.com/authors/{id}", id).retrieve().toEntity(AuthorDTO.class);
         return Either.right(new AuthorDTO(id, "William Shakespeare"));
     }
 

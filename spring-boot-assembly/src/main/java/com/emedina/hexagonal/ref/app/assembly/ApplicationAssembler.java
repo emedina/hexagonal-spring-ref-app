@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.client.RestClient;
 
 /**
  * Assembles the application creating the necessary beans.
@@ -24,8 +24,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 class ApplicationAssembler {
 
     @Bean
-    WebClient webClient() {
-        return WebClient.builder().build();
+    RestClient restClient() {
+        return RestClient.builder().build();
     }
 
 }

@@ -14,7 +14,7 @@
     <artifactId>hexagonal-spring-ref-app-author-external-adapter</artifactId>
 
     <properties>
-        <spring.version>6.0.12</spring.version>
+        <spring.version>6.1.13</spring.version>
     </properties>
 
     <dependencies>
@@ -26,7 +26,7 @@
 
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-webflux</artifactId>
+            <artifactId>spring-web</artifactId>
             <version>${spring.version}</version>
         </dependency>
     </dependencies>
