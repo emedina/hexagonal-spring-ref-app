@@ -17,7 +17,7 @@ import org.springframework.web.client.RestClient;
  */
 @EnableTransactionManagement
 @Configuration(proxyBeanMethods = false)
-@ComponentScan(basePackages = "org.epo", includeFilters = @ComponentScan.Filter(
+@ComponentScan(basePackages = "com.emedina", includeFilters = @ComponentScan.Filter(
         type = FilterType.ANNOTATION,
         classes = {ApplicationService.class, Adapter.class, DomainService.class}
 ))
