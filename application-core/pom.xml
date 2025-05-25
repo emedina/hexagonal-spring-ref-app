@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -22,9 +21,8 @@
     </modules>
 
     <properties>
-        <vavr.version>0.10.4</vavr.version>
-
         <shared-kernel-domain.version>1.0.0</shared-kernel-domain.version>
+        <shared-kernel-transactional.version>1.0.0</shared-kernel-transactional.version>
         <shared-kernel-command-either-bus.version>1.0.0</shared-kernel-command-either-bus.version>
         <shared-kernel-query-bus.version>1.0.0</shared-kernel-query-bus.version>
     </properties>
@@ -46,6 +44,11 @@
             <artifactId>shared-kernel-command-either-bus</artifactId>
             <version>${shared-kernel-command-either-bus.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.emedina.sharedkernel</groupId>
+            <artifactId>shared-kernel-transactional</artifactId>
+            <version>${shared-kernel-transactional.version}</version>
+        </dependency>
 
         <!-- Exceptional/Agreed 3rd party libraries -->
         <dependency>
@@ -64,6 +67,32 @@
             <groupId>com.emedina</groupId>
             <artifactId>hexagonal-spring-ref-app-shared-kernel</artifactId>
             <version>${project.version}</version>
+        </dependency>
+
+        <!-- Test Dependencies -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
