@@ -31,10 +31,6 @@ The book provides complete coverage of:
 - Real-world case studies and evolution patterns
 - Migration from traditional layered architectures
 
----
-
-[Rest of existing README content]
-
 ## 🎯 Overview
 
 This project serves as a practical example of implementing the Hexagonal Architecture with Spring Boot. It showcases how to structure a Spring application with clear boundaries between the domain core and external dependencies, enabling better testability, maintainability, and flexibility.
