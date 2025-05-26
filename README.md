@@ -2,6 +2,39 @@
 
 A comprehensive reference implementation of the Hexagonal Architecture (Ports and Adapters) pattern using the Spring ecosystem, demonstrating clean separation of concerns and domain-driven design principles.
 
+## 📚 Further Learning
+
+This reference application demonstrates patterns and principles thoroughly explored in:
+
+**English Version**  
+*Decoupling by Design: A Pragmatic Approach to Hexagonal Architecture*  
+
+- [PDF](https://leanpub.com/decouplingbydesignapractitionersguidetohexagonalarchitecture)  
+- [Kindle](https://a.co/d/4KwauyK)  
+- [Paperback](https://a.co/d/cGQI8gX)  
+
+**Versión en Español**  
+*Desacoplamiento por Diseño: Una Guía Práctica para la Arquitectura Hexagonal*  
+
+- [PDF](https://leanpub.com/desacoplamientopordiseounaguaprcticaparalaarquitecturahexagonal)  
+- [Kindle](https://amzn.eu/d/ic50CoH)  
+- [Tapa blanda](https://amzn.eu/d/1fHOpN6)  
+
+The book provides complete coverage of:
+
+- End-to-end hexagonal architecture implementation
+- Domain-driven design integration
+- Spring Boot configuration for hexagonal systems
+- Functional error handling patterns
+- Adapter implementation strategies
+- Testing approaches for each architectural layer
+- Real-world case studies and evolution patterns
+- Migration from traditional layered architectures
+
+---
+
+[Rest of existing README content]
+
 ## 🎯 Overview
 
 This project serves as a practical example of implementing the Hexagonal Architecture with Spring Boot. It showcases how to structure a Spring application with clear boundaries between the domain core and external dependencies, enabling better testability, maintainability, and flexibility.
