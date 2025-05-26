@@ -1,5 +1,9 @@
 # 🔷 Hexagonal Spring Reference Application
 
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
+![Java Version](https://img.shields.io/badge/Java-24-blue)
+![Test Coverage](https://img.shields.io/badge/coverage-90%25-brightgreen)
+
 A comprehensive reference implementation of the Hexagonal Architecture (Ports and Adapters) pattern using the Spring ecosystem, demonstrating clean separation of concerns and domain-driven design principles.
 
 ## 📚 Further Learning
