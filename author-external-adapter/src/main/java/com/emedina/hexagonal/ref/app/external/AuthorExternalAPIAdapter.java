@@ -1,20 +1,20 @@
 package com.emedina.hexagonal.ref.app.external;
 
+import org.springframework.web.client.RestClient;
+
 import com.emedina.hexagonal.ref.app.application.ports.out.AuthorOutputPort;
 import com.emedina.hexagonal.ref.app.shared.dto.AuthorDTO;
 import com.emedina.hexagonal.ref.app.shared.error.Error;
 import com.emedina.sharedkernel.application.annotation.Adapter;
+
 import io.vavr.control.Either;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.client.RestClient;
 
 /**
  * Implementation of {@link AuthorOutputPort} that uses an external API to fetch information about authors.
  *
  * @author Enrique Medina Montenegro
  */
-@Slf4j
 @Adapter
 @RequiredArgsConstructor
 class AuthorExternalAPIAdapter implements AuthorOutputPort {

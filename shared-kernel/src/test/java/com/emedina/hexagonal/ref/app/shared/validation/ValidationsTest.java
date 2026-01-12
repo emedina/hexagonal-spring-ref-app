@@ -212,7 +212,7 @@ class ValidationsTest {
         List<String> nonEmptyList = Arrays.asList("item1", "item2", "item3");
 
         // when
-        Validation<ValidationError, List> result = Validations.validateNotEmpty(nonEmptyList);
+        Validation<ValidationError, List<?>> result = Validations.validateNotEmpty(nonEmptyList);
 
         // then
         assertThat(result.isValid()).isTrue();
@@ -225,7 +225,7 @@ class ValidationsTest {
         List<String> singleItemList = Arrays.asList("single-item");
 
         // when
-        Validation<ValidationError, List> result = Validations.validateNotEmpty(singleItemList);
+        Validation<ValidationError, List<?>> result = Validations.validateNotEmpty(singleItemList);
 
         // then
         assertThat(result.isValid()).isTrue();
@@ -238,7 +238,7 @@ class ValidationsTest {
         List<String> emptyList = Collections.emptyList();
 
         // when
-        Validation<ValidationError, List> result = Validations.validateNotEmpty(emptyList);
+        Validation<ValidationError, List<?>> result = Validations.validateNotEmpty(emptyList);
 
         // then
         assertThat(result.isInvalid()).isTrue();
@@ -253,7 +253,7 @@ class ValidationsTest {
         List<String> nullList = null;
 
         // when
-        Validation<ValidationError, List> result = Validations.validateNotEmpty(nullList);
+        Validation<ValidationError, List<?>> result = Validations.validateNotEmpty(nullList);
 
         // then
         assertThat(result.isInvalid()).isTrue();

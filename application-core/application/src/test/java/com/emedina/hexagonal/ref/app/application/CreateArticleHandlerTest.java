@@ -14,12 +14,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.emedina.hexagonal.ref.app.application.command.CreateArticleCommand;
 import com.emedina.hexagonal.ref.app.application.ports.out.AuthorOutputPort;
 import com.emedina.hexagonal.ref.app.domain.entities.Article;
-import com.emedina.hexagonal.ref.app.domain.entities.ArticleId;
-import com.emedina.hexagonal.ref.app.domain.entities.Author;
-import com.emedina.hexagonal.ref.app.domain.entities.AuthorId;
-import com.emedina.hexagonal.ref.app.domain.entities.Content;
-import com.emedina.hexagonal.ref.app.domain.entities.PersonName;
-import com.emedina.hexagonal.ref.app.domain.entities.Title;
 import com.emedina.hexagonal.ref.app.domain.repositories.ArticleRepository;
 import com.emedina.hexagonal.ref.app.shared.dto.AuthorDTO;
 import com.emedina.hexagonal.ref.app.shared.error.Error;
@@ -54,7 +48,6 @@ class CreateArticleHandlerTest {
             "article-123", "author-456", "Test Title", "Test content").get();
 
         AuthorDTO authorDTO = createValidAuthorDTO();
-        Article expectedArticle = createValidArticle();
 
         when(authorOutputPort.lookupAuthor("author-456")).thenReturn(Either.right(authorDTO));
         when(articleRepository.save(any(Article.class))).thenReturn(Either.right(null));
@@ -216,21 +209,8 @@ class CreateArticleHandlerTest {
         verify(articleRepository).save(any(Article.class));
     }
 
-    private Article createValidArticle() {
-        ArticleId id = ArticleId.validateThenCreate("article-123").get();
-        Title title = Title.validateThenCreate("Test Title").get();
-        Content content = Content.validateThenCreate("Test content").get();
-        Author author = createValidAuthor();
-        return Article.validateThenCreate(id, title, content, author).get();
-    }
-
-    private Author createValidAuthor() {
-        AuthorId authorId = AuthorId.validateThenCreate("author-123").get();
-        PersonName authorName = PersonName.validateThenCreate("John Doe").get();
-        return Author.validateThenCreate(authorId, authorName).get();
-    }
-
     private AuthorDTO createValidAuthorDTO() {
         return new AuthorDTO("author-123", "John Doe");
     }
+
 }

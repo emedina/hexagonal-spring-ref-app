@@ -567,4 +567,5 @@ class InMemoryArticleRepositoryTest {
             assertThat(allArticles.get()).hasSize(2);
         }
     }
+
 }

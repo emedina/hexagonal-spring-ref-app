@@ -72,7 +72,6 @@ class ArticleControllerTest {
         @DisplayName("When getting all articles successfully, then should return OK with articles list")
         void shouldReturnOkWithArticlesList_whenGettingAllArticlesSuccessfully() {
             // Given
-            GetAllArticlesQuery query = GetAllArticlesQuery.validateThenCreate().get();
             List<ArticleDTO> articles = List.of(
                 new ArticleDTO("article-1", "Title 1", "Content 1", "Author 1"),
                 new ArticleDTO("article-2", "Title 2", "Content 2", "Author 2")
@@ -104,7 +103,6 @@ class ArticleControllerTest {
         @DisplayName("When getting all articles returns empty list, then should return OK with empty list")
         void shouldReturnOkWithEmptyList_whenGettingAllArticlesReturnsEmptyList() {
             // Given
-            GetAllArticlesQuery query = GetAllArticlesQuery.validateThenCreate().get();
             List<ArticleDTO> emptyList = List.of();
 
             when(queryBus.query(any(GetAllArticlesQuery.class))).thenReturn(Either.right(emptyList));
@@ -127,7 +125,6 @@ class ArticleControllerTest {
         @DisplayName("When getting all articles fails with error, then should return error response")
         void shouldReturnErrorResponse_whenGettingAllArticlesFails() {
             // Given
-            GetAllArticlesQuery query = GetAllArticlesQuery.validateThenCreate().get();
             Error error = new Error.TechnicalError.SomethingWentWrong("Database connection failed");
 
             when(queryBus.query(any(GetAllArticlesQuery.class))).thenReturn(Either.left(error));
@@ -196,7 +193,6 @@ class ArticleControllerTest {
         void shouldReturnOkWithArticle_whenFindingArticleByIdSuccessfully() {
             // Given
             String articleId = "article-123";
-            FindArticleQuery query = FindArticleQuery.validateThenCreate(articleId).get();
             ArticleDTO article = new ArticleDTO(articleId, "Test Title", "Test Content", "John Doe");
 
             when(queryBus.query(any(FindArticleQuery.class))).thenReturn(Either.right(article));
@@ -222,7 +218,6 @@ class ArticleControllerTest {
         void shouldReturnErrorResponse_whenArticleNotFound() {
             // Given
             String articleId = "non-existent-id";
-            FindArticleQuery query = FindArticleQuery.validateThenCreate(articleId).get();
             Error error = new Error.BusinessError.UnknownArticle(articleId);
 
             when(queryBus.query(any(FindArticleQuery.class))).thenReturn(Either.left(error));
@@ -263,10 +258,6 @@ class ArticleControllerTest {
                     "new-article-123", "author-456", "New Article Title", "New Article Content"
                 );
 
-                CreateArticleCommand command = CreateArticleCommand.validateThenCreate(
-                    articleRequest.id(), articleRequest.authorId(), articleRequest.title(), articleRequest.content()
-                ).get();
-
                 when(commandBus.execute(any(CreateArticleCommand.class))).thenReturn(Either.right(null));
 
                 // When
@@ -286,11 +277,6 @@ class ArticleControllerTest {
                 ApiRequest.Article invalidArticleRequest = new ApiRequest.Article(
                     "", "author-456", "", "New Article Content"
                 );
-
-                Error validationError = new Error.ValidationErrors(List.of(
-                    new ValidationError.MustHaveContent("id"),
-                    new ValidationError.MustHaveContent("title")
-                ));
 
                 ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST.value());
                 problemDetail.setDetail("Must have content [id], Must have content [title]");
@@ -328,10 +314,6 @@ class ArticleControllerTest {
                     "existing-article-123", "author-456", "Updated Title", "Updated Content"
                 );
 
-                UpdateArticleCommand command = UpdateArticleCommand.validateThenCreate(
-                    articleRequest.id(), articleRequest.authorId(), articleRequest.title(), articleRequest.content()
-                ).get();
-
                 when(commandBus.execute(any(UpdateArticleCommand.class))).thenReturn(Either.right(null));
 
                 // When
@@ -351,11 +333,6 @@ class ArticleControllerTest {
                 ApiRequest.Article invalidArticleRequest = new ApiRequest.Article(
                     "article-123", "", "", "Updated Content"
                 );
-
-                Error validationError = new Error.ValidationErrors(List.of(
-                    new ValidationError.MustHaveContent("authorId"),
-                    new ValidationError.MustHaveContent("title")
-                ));
 
                 ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST.value());
                 problemDetail.setDetail("Must have content [authorId], Must have content [title]");
@@ -391,7 +368,6 @@ class ArticleControllerTest {
         void shouldReturnOk_whenDeletingArticleSuccessfully() {
             // Given
             String articleId = "article-to-delete-123";
-            DeleteArticleCommand command = DeleteArticleCommand.validateThenCreate(articleId).get();
 
             when(commandBus.execute(any(DeleteArticleCommand.class))).thenReturn(Either.right(null));
 
@@ -410,9 +386,6 @@ class ArticleControllerTest {
         void shouldReturnErrorResponse_whenDeletingArticleWithInvalidId() {
             // Given
             String invalidArticleId = "";
-            Error validationError = new Error.ValidationErrors(
-                List.of(new ValidationError.MustHaveContent("articleId"))
-            );
 
             ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST.value());
             problemDetail.setDetail("Must have content [articleId]");
@@ -437,4 +410,5 @@ class ArticleControllerTest {
             verify(apiErrorHandler).mapErrorToProblemDetail(any(Error.class), any(HttpServletRequest.class));
         }
     }
+
 }

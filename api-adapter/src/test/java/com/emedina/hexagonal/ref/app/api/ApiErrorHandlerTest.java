@@ -230,4 +230,5 @@ class ApiErrorHandlerTest {
             assertThat(result.get(2).getDetail()).isEqualTo("Internal server error [Test error message]");
         }
     }
+
 }

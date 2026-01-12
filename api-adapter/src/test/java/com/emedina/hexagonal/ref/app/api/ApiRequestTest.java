@@ -241,4 +241,5 @@ class ApiRequestTest {
             assertThat(result).contains("Contenido con ñ y ç");
         }
     }
+
 }

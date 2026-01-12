@@ -210,9 +210,6 @@ class ArticleMapperTest {
         @DisplayName("When CreateArticleCommand with invalid data provided, then should return validation error")
         void shouldReturnValidationError_whenInvalidCommandProvided() {
             // Given
-            var validCommand = CreateArticleCommand.validateThenCreate("valid-id", "Test Title", "Test content",
-                "author-123").get();
-            var authorDTO = new AuthorDTO("author-123", "John Doe");
 
             // When - Test with empty id through direct method call
             Validation<Error, Article> result = mapper.toArticle("", "Test Title", "Test content",
@@ -468,4 +465,5 @@ class ArticleMapperTest {
             assertThat(instance1).isSameAs(instance2);
         }
     }
+
 }

@@ -250,4 +250,5 @@ class AuthorExternalAPIAdapterTest {
             assertThat(result3.get().name()).isEqualTo("William Shakespeare");
         }
     }
+
 }

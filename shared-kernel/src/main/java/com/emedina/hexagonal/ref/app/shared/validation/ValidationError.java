@@ -12,7 +12,7 @@ public sealed interface ValidationError {
     record CannotBeNull(Object obj) implements ValidationError {
     }
 
-    record CannotBeEmpty(List list) implements ValidationError {
+    record CannotBeEmpty(List<?> list) implements ValidationError {
     }
 
     record MustHaveContent(String name) implements ValidationError {
@@ -22,4 +22,3 @@ public sealed interface ValidationError {
     }
 
 }
-

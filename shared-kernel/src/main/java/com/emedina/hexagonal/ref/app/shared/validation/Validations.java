@@ -1,13 +1,13 @@
 package com.emedina.hexagonal.ref.app.shared.validation;
 
+import java.io.InputStream;
+import java.util.List;
+import java.util.Objects;
+
 import io.vavr.control.Try;
 import io.vavr.control.Validation;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-
-import java.io.InputStream;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * Utility class to provide different types of validations.
@@ -24,9 +24,9 @@ public final class Validations {
      * @return the validation result
      */
     public static Validation<ValidationError, String> validateText(final String text) {
-        return validateMandatoryString(text)
-                ? Validation.valid(text)
-                : Validation.invalid(new ValidationError.Invalid(text));
+        return validateMandatoryString(text) ?
+            Validation.valid(text) :
+            Validation.invalid(new ValidationError.Invalid(text));
     }
 
     /**
@@ -36,9 +36,9 @@ public final class Validations {
      * @return the validation result
      */
     public static Validation<ValidationError, Long> validateGreaterThanZero(final Long number) {
-        return Objects.nonNull(number) && number > 0L
-                ? Validation.valid(number)
-                : Validation.invalid(new ValidationError.CannotBeNull(number));
+        return Objects.nonNull(number) && number > 0L ?
+            Validation.valid(number) :
+            Validation.invalid(new ValidationError.CannotBeNull(number));
     }
 
     /**
@@ -47,10 +47,11 @@ public final class Validations {
      * @param stream the stream to be validated
      * @return the validation result
      */
-    public static Validation<ValidationError, InputStream> validateContent(final InputStream stream, final String name) {
-        return Objects.nonNull(stream) && Try.of(() -> stream.available() > 0).getOrElse(false)
-                ? Validation.valid(stream)
-                : Validation.invalid(new ValidationError.MustHaveContent(name));
+    public static Validation<ValidationError, InputStream> validateContent(final InputStream stream,
+        final String name) {
+        return Objects.nonNull(stream) && Try.of(() -> stream.available() > 0).getOrElse(false) ?
+            Validation.valid(stream) :
+            Validation.invalid(new ValidationError.MustHaveContent(name));
     }
 
     /**
@@ -59,10 +60,10 @@ public final class Validations {
      * @param list the list to be validated
      * @return the validation result
      */
-    public static Validation<ValidationError, List> validateNotEmpty(final List list) {
-        return Objects.nonNull(list) && !list.isEmpty()
-                ? Validation.valid(list)
-                : Validation.invalid(new ValidationError.CannotBeEmpty(list));
+    public static Validation<ValidationError, List<?>> validateNotEmpty(final List<?> list) {
+        return Objects.nonNull(list) && !list.isEmpty() ?
+            Validation.valid(list) :
+            Validation.invalid(new ValidationError.CannotBeEmpty(list));
     }
 
     /**
@@ -73,8 +74,8 @@ public final class Validations {
      */
     public static Validation<ValidationError, Object> validateMandatory(Object value) {
         return Objects.nonNull(value) ?
-                Validation.valid(value) :
-                Validation.invalid(new ValidationError.CannotBeNull(value));
+            Validation.valid(value) :
+            Validation.invalid(new ValidationError.CannotBeNull(value));
     }
 
     /**

@@ -284,4 +284,5 @@ class FindArticleHandlerTest {
         PersonName authorName = PersonName.validateThenCreate("John Doe").get();
         return Author.validateThenCreate(authorId, authorName).get();
     }
+
 }

@@ -267,4 +267,5 @@ class GetAllArticlesHandlerTest {
         PersonName authorName = PersonName.validateThenCreate(name).get();
         return Author.validateThenCreate(authorId, authorName).get();
     }
+
 }

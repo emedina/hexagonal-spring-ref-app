@@ -244,4 +244,5 @@ class DeleteArticleHandlerTest {
         verify(articleRepository).delete(articleId1);
         verify(articleRepository).delete(articleId2);
     }
+
 }

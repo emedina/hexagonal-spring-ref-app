@@ -274,4 +274,5 @@ class UpdateArticleHandlerTest {
     private AuthorDTO createValidAuthorDTO() {
         return new AuthorDTO("author-123", "John Doe");
     }
+
 }

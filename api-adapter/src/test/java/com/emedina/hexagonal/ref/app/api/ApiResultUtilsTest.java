@@ -211,4 +211,5 @@ class ApiResultUtilsTest {
             assertThat(result.getBody().get(0).getType()).isEqualTo(uri);
         }
     }
+
 }

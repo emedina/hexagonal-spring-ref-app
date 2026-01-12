@@ -19,34 +19,34 @@
     </scm>
 
     <properties>
-        <java.version>24</java.version>
-        <maven.compiler.source>24</maven.compiler.source>
-        <maven.compiler.target>24</maven.compiler.target>
+        <java.version>25</java.version>
+        <maven.compiler.source>25</maven.compiler.source>
+        <maven.compiler.target>25</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <!-- Enable full annotation processing for Lombok with JDK 24 -->
+        <!-- Enable full annotation processing for Lombok with JDK 25 -->
         <maven.compiler.proc>full</maven.compiler.proc>
 
-        <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
-        <versions-maven-plugin.version>2.18.0</versions-maven-plugin.version>
-        <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
+        <maven-compiler-plugin.version>3.14.1</maven-compiler-plugin.version>
+        <versions-maven-plugin.version>2.20.1</versions-maven-plugin.version>
+        <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
 
-        <spring-boot.version>3.5.0</spring-boot.version>
-        <vavr.version>0.10.6</vavr.version>
-        <lombok.version>1.18.38</lombok.version>
+        <spring-boot.version>4.0.1</spring-boot.version>
+        <vavr.version>0.11.0</vavr.version>
+        <lombok.version>1.18.42</lombok.version>
         <mapstruct.version>1.6.3</mapstruct.version>
 
         <shared-kernel.version>1.0.0</shared-kernel.version>
 
         <!-- Test Dependencies -->
-        <junit-jupiter.version>5.11.3</junit-jupiter.version>
-        <mockito.version>5.14.2</mockito.version>
-        <assertj.version>3.26.3</assertj.version>
-        <slf4j.version>2.0.16</slf4j.version>
+        <junit-jupiter.version>6.0.2</junit-jupiter.version>
+        <mockito.version>5.21.0</mockito.version>
+        <assertj.version>3.27.6</assertj.version>
+        <slf4j.version>2.0.17</slf4j.version>
 
         <!-- Plugins -->
-        <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
-        <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
+        <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
+        <maven-surefire-plugin.version>3.5.4</maven-surefire-plugin.version>
     </properties>
 
     <modules>

@@ -318,4 +318,5 @@ class ApiResponseTest {
             assertThat(article1.content()).isSameAs(article2.content()); // String interning
         }
     }
+
 }
