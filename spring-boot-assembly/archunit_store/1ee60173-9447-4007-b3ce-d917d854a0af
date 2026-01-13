@@ -1,0 +1,2 @@
+Class <com.emedina.hexagonal.ref.app.application.query.FindArticleQuery> implements interface <com.emedina.sharedkernel.query.Query> in (FindArticleQuery.java:0)
+Class <com.emedina.hexagonal.ref.app.application.query.GetAllArticlesQuery> implements interface <com.emedina.sharedkernel.query.Query> in (GetAllArticlesQuery.java:0)

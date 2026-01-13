@@ -18,6 +18,10 @@
         <query-either-bus-spring-boot.version>1.0.0</query-either-bus-spring-boot.version>
         <command-either-bus-spring-boot.version>1.0.0</command-either-bus-spring-boot.version>
         <transactional-either-spring-boot.version>1.0.0</transactional-either-spring-boot.version>
+        <archunit-hexagonal.version>1.0.0</archunit-hexagonal.version>
+
+        <!-- Skip JaCoCo coverage for this module (assembly module with architecture tests) -->
+        <jacoco.skip>true</jacoco.skip>
     </properties>
 
     <dependencyManagement>
@@ -101,30 +105,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring-boot.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>${junit-jupiter.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>${mockito.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-junit-jupiter</artifactId>
-            <version>${mockito.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>${assertj.version}</version>
+            <groupId>io.github.emedina</groupId>
+            <artifactId>archunit-hexagonal</artifactId>
+            <version>${archunit-hexagonal.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

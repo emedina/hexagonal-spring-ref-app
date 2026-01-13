@@ -1,0 +1,6 @@
+Class <com.emedina.hexagonal.ref.app.application.ports.in.CreateArticleUseCase> is annotated with @UseCase in (CreateArticleUseCase.java:0)
+Class <com.emedina.hexagonal.ref.app.application.ports.in.DeleteArticleUseCase> is annotated with @UseCase in (DeleteArticleUseCase.java:0)
+Class <com.emedina.hexagonal.ref.app.application.ports.in.FindArticleUseCase> is annotated with @UseCase in (FindArticleUseCase.java:0)
+Class <com.emedina.hexagonal.ref.app.application.ports.in.GetAllArticlesUseCase> is annotated with @UseCase in (GetAllArticlesUseCase.java:0)
+Class <com.emedina.hexagonal.ref.app.application.ports.in.UpdateArticleUseCase> is annotated with @UseCase in (UpdateArticleUseCase.java:0)
+Class <com.emedina.hexagonal.ref.app.application.ports.out.AuthorOutputPort> is annotated with @OutputPort in (AuthorOutputPort.java:0)

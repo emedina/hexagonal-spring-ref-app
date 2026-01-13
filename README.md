@@ -219,6 +219,28 @@ mvn clean test jacoco:report
 - **Hexagonal Testing**: Each layer tested independently
 - **Behavior Verification**: Focus on verifying correct behavior
 
+### 🏛️ Architecture Tests (ArchUnit)
+
+The project includes ArchUnit-based architecture tests to enforce hexagonal architecture rules:
+
+```bash
+# Run architecture tests
+mvn test -pl spring-boot-assembly -Dtest="*ArchitectureTest"
+```
+
+Architecture tests validate:
+
+- **Shared Kernel**: Only depends on allowed external libraries
+- **Domain Layer**: No dependencies on infrastructure or frameworks
+- **Input Ports**: Properly defined as interfaces with correct dependencies
+- **Output Ports**: Properly defined as interfaces for secondary adapters
+- **Commands**: Follow command pattern conventions
+- **Queries**: Follow query pattern conventions
+- **Handlers**: Implement use cases correctly
+- **Adapters**: Only depend on allowed packages
+
+Configuration is managed via `application.yaml` in test resources, allowing customization of allowed dependencies per layer.
+
 ## 📋 Dependencies
 
 | Dependency | Version | Purpose |
@@ -238,6 +260,7 @@ mvn clean test jacoco:report
 | **Mockito** | 5.21.0 | Mocking framework |
 | **AssertJ** | 3.27.6 | Fluent assertions |
 | **SLF4J** | 2.0.17 | Logging framework |
+| **ArchUnit Hexagonal** | 1.0.0 | Architecture tests for hexagonal validation |
 
 ## 🔧 Build Requirements
 

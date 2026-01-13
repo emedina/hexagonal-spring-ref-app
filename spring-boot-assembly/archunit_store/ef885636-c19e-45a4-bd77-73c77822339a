@@ -1,0 +1,2 @@
+Class com.emedina.hexagonal.ref.app.application.ports.in.FindArticleUseCase has a generic type ArticleDTO at position 2 that is not assignable to Query
+Class com.emedina.hexagonal.ref.app.application.ports.in.GetAllArticlesUseCase has a generic type List at position 2 that is not assignable to Query
