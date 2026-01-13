@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.emedina</groupId>
+        <groupId>io.github.emedina</groupId>
         <artifactId>hexagonal-spring-ref-app</artifactId>
         <version>0.0.1</version>
     </parent>
@@ -37,12 +37,12 @@
     <dependencies>
         <!-- Ref App dependencies -->
         <dependency>
-            <groupId>com.emedina</groupId>
+            <groupId>io.github.emedina</groupId>
             <artifactId>hexagonal-spring-ref-app-application-core-input-ports</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.emedina</groupId>
+            <groupId>io.github.emedina</groupId>
             <artifactId>hexagonal-spring-ref-app-shared-kernel</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -68,12 +68,12 @@
 
         <!-- Command & Query Bus dependencies -->
         <dependency>
-            <groupId>com.emedina.sharedkernel</groupId>
+            <groupId>io.github.emedina</groupId>
             <artifactId>shared-kernel-query-either-bus</artifactId>
             <version>${shared-kernel-query-either-bus.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.emedina.sharedkernel</groupId>
+            <groupId>io.github.emedina</groupId>
             <artifactId>shared-kernel-command-either-bus</artifactId>
             <version>${shared-kernel-command-either-bus.version}</version>
         </dependency>

@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.emedina</groupId>
+        <groupId>io.github.emedina</groupId>
         <artifactId>hexagonal-spring-ref-app</artifactId>
         <version>0.0.1</version>
     </parent>
@@ -30,22 +30,22 @@
     <dependencies>
         <!-- Common dependencies -->
         <dependency>
-            <groupId>com.emedina.sharedkernel</groupId>
+            <groupId>io.github.emedina</groupId>
             <artifactId>shared-kernel-domain</artifactId>
             <version>${shared-kernel-domain.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.emedina.sharedkernel</groupId>
+            <groupId>io.github.emedina</groupId>
             <artifactId>shared-kernel-query-either-bus</artifactId>
             <version>${shared-kernel-query-either-bus.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.emedina.sharedkernel</groupId>
+            <groupId>io.github.emedina</groupId>
             <artifactId>shared-kernel-command-either-bus</artifactId>
             <version>${shared-kernel-command-either-bus.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.emedina.sharedkernel</groupId>
+            <groupId>io.github.emedina</groupId>
             <artifactId>shared-kernel-transactional</artifactId>
             <version>${shared-kernel-transactional.version}</version>
         </dependency>
@@ -64,7 +64,7 @@
 
         <!-- Shared Kernel for Ref App -->
         <dependency>
-            <groupId>com.emedina</groupId>
+            <groupId>io.github.emedina</groupId>
             <artifactId>hexagonal-spring-ref-app-shared-kernel</artifactId>
             <version>${project.version}</version>
         </dependency>

@@ -57,7 +57,7 @@ Add the project as a dependency to your `pom.xml`:
 
 ```xml
 <dependency>
-    <groupId>com.emedina</groupId>
+    <groupId>io.github.emedina</groupId>
     <artifactId>hexagonal-spring-ref-app</artifactId>
     <version>0.0.1</version>
 </dependency>
