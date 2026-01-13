@@ -1,7 +1,5 @@
 package com.emedina.hexagonal.ref.app.application;
 
-import io.vavr.control.Either;
-import lombok.RequiredArgsConstructor;
 import com.emedina.hexagonal.ref.app.application.command.DeleteArticleCommand;
 import com.emedina.hexagonal.ref.app.application.ports.in.DeleteArticleUseCase;
 import com.emedina.hexagonal.ref.app.domain.entities.ArticleId;
@@ -9,6 +7,9 @@ import com.emedina.hexagonal.ref.app.domain.repositories.ArticleRepository;
 import com.emedina.hexagonal.ref.app.shared.error.Error;
 import com.emedina.sharedkernel.application.annotation.ApplicationService;
 import com.emedina.sharedkernel.transactional.Transactional;
+
+import io.vavr.control.Either;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Orchestration logic for the use case to delete an article.
@@ -18,7 +19,7 @@ import com.emedina.sharedkernel.transactional.Transactional;
  */
 @ApplicationService
 @RequiredArgsConstructor
-final class DeleteArticleHandler implements DeleteArticleUseCase {
+class DeleteArticleHandler implements DeleteArticleUseCase {
 
     private final ArticleRepository articleRepository;
 
@@ -32,8 +33,8 @@ final class DeleteArticleHandler implements DeleteArticleUseCase {
     @Transactional
     public Either<Error, Void> handle(final DeleteArticleCommand command) {
         return ArticleId.validateThenCreate(command.id())
-                .toEither()
-                .flatMap(this.articleRepository::delete);
+            .toEither()
+            .flatMap(this.articleRepository::delete);
     }
 
 }

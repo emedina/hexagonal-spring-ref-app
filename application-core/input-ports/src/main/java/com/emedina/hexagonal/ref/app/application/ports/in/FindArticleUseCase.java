@@ -6,8 +6,6 @@ import com.emedina.hexagonal.ref.app.shared.error.Error;
 import com.emedina.sharedkernel.application.annotation.UseCase;
 import com.emedina.sharedkernel.query.core.QueryHandler;
 
-import io.vavr.control.Either;
-
 /**
  * Use case to find an article by its identifier.
  *
@@ -16,5 +14,5 @@ import io.vavr.control.Either;
  */
 @UseCase
 public interface FindArticleUseCase
-        extends QueryHandler<Either<Error, ArticleDTO>, FindArticleQuery> {
+        extends QueryHandler<Error, ArticleDTO, FindArticleQuery> {
 }

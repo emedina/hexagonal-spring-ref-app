@@ -1,7 +1,7 @@
 # 🔷 Hexagonal Spring Reference Application
 
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
-![Java Version](https://img.shields.io/badge/Java-24-blue)
+![Java Version](https://img.shields.io/badge/Java-25-blue)
 ![Test Coverage](https://img.shields.io/badge/coverage-90%25-brightgreen)
 
 A comprehensive reference implementation of the Hexagonal Architecture (Ports and Adapters) pattern using the Spring ecosystem, demonstrating clean separation of concerns and domain-driven design principles.
@@ -223,10 +223,10 @@ mvn clean test jacoco:report
 
 | Dependency | Version | Purpose |
 |------------|---------|---------|
-| **Spring Boot** | 3.5.0 | Core Spring Boot framework |
-| **Java** | 24+ | Runtime platform |
-| **Vavr** | 0.10.6 | Functional programming with Either |
-| **Lombok** | 1.18.38 | Boilerplate code reduction |
+| **Spring Boot** | 4.0.1 | Core Spring Boot framework |
+| **Java** | 25+ | Runtime platform |
+| **Vavr** | 0.11.0 | Functional programming with Either |
+| **Lombok** | 1.18.42 | Boilerplate code reduction |
 | **MapStruct** | 1.6.3 | Object mapping |
 | **Shared Kernel** | 1.0.0 | Common components |
 
@@ -234,16 +234,16 @@ mvn clean test jacoco:report
 
 | Dependency | Version | Purpose |
 |------------|---------|---------|
-| **JUnit Jupiter** | 5.11.3 | Testing framework |
-| **Mockito** | 5.14.2 | Mocking framework |
-| **AssertJ** | 3.26.3 | Fluent assertions |
-| **SLF4J** | 2.0.16 | Logging framework |
+| **JUnit Jupiter** | 6.0.2 | Testing framework |
+| **Mockito** | 5.21.0 | Mocking framework |
+| **AssertJ** | 3.27.6 | Fluent assertions |
+| **SLF4J** | 2.0.17 | Logging framework |
 
 ## 🔧 Build Requirements
 
-- **Java 24+**
+- **Java 25+**
 - **Maven 3.9+**
-- **Spring Boot 3.5.0+**
+- **Spring Boot 4.0.1+**
 
 ### Building
 

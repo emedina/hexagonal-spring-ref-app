@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
  */
 @ApplicationService
 @RequiredArgsConstructor
-final class CreateArticleHandler implements CreateArticleUseCase {
+class CreateArticleHandler implements CreateArticleUseCase {
 
     private final AuthorOutputPort authorOutputPort;
     private final ArticleRepository articleRepository;

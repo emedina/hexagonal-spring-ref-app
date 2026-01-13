@@ -18,7 +18,7 @@
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
 
         <shared-kernel-command-either-bus.version>1.0.0</shared-kernel-command-either-bus.version>
-        <shared-kernel-query-bus.version>1.0.0</shared-kernel-query-bus.version>
+        <shared-kernel-query-either-bus.version>1.0.0</shared-kernel-query-either-bus.version>
     </properties>
 
     <dependencyManagement>
@@ -50,7 +50,7 @@
         <!-- Spring Boot dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-webmvc</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -69,8 +69,8 @@
         <!-- Command & Query Bus dependencies -->
         <dependency>
             <groupId>com.emedina.sharedkernel</groupId>
-            <artifactId>shared-kernel-query-bus</artifactId>
-            <version>${shared-kernel-query-bus.version}</version>
+            <artifactId>shared-kernel-query-either-bus</artifactId>
+            <version>${shared-kernel-query-either-bus.version}</version>
         </dependency>
         <dependency>
             <groupId>com.emedina.sharedkernel</groupId>

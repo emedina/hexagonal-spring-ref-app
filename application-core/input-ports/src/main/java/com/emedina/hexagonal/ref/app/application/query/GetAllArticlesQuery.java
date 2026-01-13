@@ -1,12 +1,13 @@
 package com.emedina.hexagonal.ref.app.application.query;
 
+import com.emedina.hexagonal.ref.app.shared.error.Error;
+import com.emedina.sharedkernel.query.Query;
+
 import io.vavr.control.Validation;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
-import com.emedina.hexagonal.ref.app.shared.error.Error;
-import com.emedina.sharedkernel.query.Query;
 
 /**
  * Query to encapsulate a request to get all the available articles.

@@ -8,8 +8,6 @@ import com.emedina.hexagonal.ref.app.shared.error.Error;
 import com.emedina.sharedkernel.application.annotation.UseCase;
 import com.emedina.sharedkernel.query.core.QueryHandler;
 
-import io.vavr.control.Either;
-
 /**
  * Use case to get all the available articles.
  *
@@ -18,5 +16,5 @@ import io.vavr.control.Either;
  */
 @UseCase
 public interface GetAllArticlesUseCase
-        extends QueryHandler<Either<Error, List<ArticleDTO>>, GetAllArticlesQuery> {
+        extends QueryHandler<Error, List<ArticleDTO>, GetAllArticlesQuery> {
 }

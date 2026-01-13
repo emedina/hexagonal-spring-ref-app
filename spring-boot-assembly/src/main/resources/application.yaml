@@ -3,12 +3,22 @@ spring:
   application:
     name: hexagonal-spring-ref-app
 
+  threads:
+    virtual:
+      enabled: true
+
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+      
 server:
   port: 8085
-  max-http-header-size: 16KB
+  max-http-request-header-size: 16KB
   servlet:
     context-path: /
-  use-forward-headers: true
+  forward-headers-strategy: FRAMEWORK
 
 management:
   security:
@@ -25,9 +35,6 @@ management:
     health:
       show-details: always
       show-components: always
-
-features:
-  virtual-threads: true
 
 logging:
   level:

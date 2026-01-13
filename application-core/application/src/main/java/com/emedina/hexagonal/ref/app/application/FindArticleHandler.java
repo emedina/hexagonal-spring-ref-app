@@ -1,7 +1,5 @@
 package com.emedina.hexagonal.ref.app.application;
 
-import io.vavr.control.Either;
-import lombok.RequiredArgsConstructor;
 import com.emedina.hexagonal.ref.app.application.ports.in.FindArticleUseCase;
 import com.emedina.hexagonal.ref.app.application.query.FindArticleQuery;
 import com.emedina.hexagonal.ref.app.domain.entities.ArticleId;
@@ -11,6 +9,9 @@ import com.emedina.hexagonal.ref.app.shared.error.Error;
 import com.emedina.sharedkernel.application.annotation.ApplicationService;
 import com.emedina.sharedkernel.transactional.Transactional;
 
+import io.vavr.control.Either;
+import lombok.RequiredArgsConstructor;
+
 /**
  * Orchestration logic for the use case to find an article by its identifier.
  *
@@ -19,7 +20,7 @@ import com.emedina.sharedkernel.transactional.Transactional;
  */
 @ApplicationService
 @RequiredArgsConstructor
-final class FindArticleHandler implements FindArticleUseCase {
+class FindArticleHandler implements FindArticleUseCase {
 
     private final ArticleRepository articleRepository;
 
@@ -33,9 +34,9 @@ final class FindArticleHandler implements FindArticleUseCase {
     @Transactional(readOnly = true)
     public Either<Error, ArticleDTO> handle(final FindArticleQuery query) {
         return ArticleId.validateThenCreate(query.id())
-                .toEither()
-                .flatMap(this.articleRepository::findById)
-                .map(ArticleMapper.INSTANCE::toArticleDto);
+            .toEither()
+            .flatMap(this.articleRepository::findById)
+            .map(ArticleMapper.INSTANCE::toArticleDto);
     }
 
 }

@@ -77,7 +77,7 @@ class TitleTest {
     @Test
     void shouldCreateTitleWithNumbers_whenValidStringWithNumbersProvided() {
         // given
-        String titleWithNumbers = "Java 21: New Features and Improvements";
+        String titleWithNumbers = "Java 25: New Features and Improvements";
 
         // when
         Validation<Error, Title> result = Title.validateThenCreate(titleWithNumbers);

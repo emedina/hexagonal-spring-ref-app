@@ -1,6 +1,7 @@
 package com.emedina.hexagonal.ref.app.application.ports.in;
 
 import com.emedina.hexagonal.ref.app.application.command.CreateArticleCommand;
+import com.emedina.hexagonal.ref.app.shared.error.Error;
 import com.emedina.sharedkernel.application.annotation.UseCase;
 import com.emedina.sharedkernel.command.core.CommandHandler;
 
@@ -11,5 +12,5 @@ import com.emedina.sharedkernel.command.core.CommandHandler;
  * @see UseCase
  */
 @UseCase
-public interface CreateArticleUseCase extends CommandHandler<CreateArticleCommand> {
+public interface CreateArticleUseCase extends CommandHandler<Error, CreateArticleCommand> {
 }

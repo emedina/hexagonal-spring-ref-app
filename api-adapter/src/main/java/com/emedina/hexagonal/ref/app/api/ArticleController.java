@@ -46,7 +46,7 @@ final class ArticleController implements ArticleApi {
                 log.atTrace().log(Thread.currentThread().getName());
                 return GetAllArticlesQuery.validateThenCreate()
                         .toEither()
-                        .<List<ArticleDTO>>flatMap(this.queryBus::query)
+                        .flatMap(query -> this.queryBus.<Error, List<ArticleDTO>, GetAllArticlesQuery>query(query))
                         .mapLeft(e -> this.apiErrorHandler.mapErrorToProblemDetail(e, request))
                         .fold(lpd -> ApiResultUtils.createFailureResponse(lpd, URI.create(request.getRequestURI())),
                                 a -> ApiResultUtils.createSuccessListResponse(HttpStatus.OK,
@@ -61,7 +61,7 @@ final class ArticleController implements ArticleApi {
                 final HttpServletRequest request) {
                 return FindArticleQuery.validateThenCreate(articleId)
                         .toEither()
-                        .<ArticleDTO>flatMap(this.queryBus::query)
+                        .flatMap(query -> this.queryBus.<Error, ArticleDTO, FindArticleQuery>query(query))
                         .mapLeft(e -> this.apiErrorHandler.mapErrorToProblemDetail(e, request))
                         .fold(lpd -> ApiResultUtils.createFailureResponse(lpd, URI.create(request.getRequestURI())),
                                 a -> ApiResultUtils.createSuccessResponse(HttpStatus.OK, ApiMapper.INSTANCE
@@ -77,7 +77,7 @@ final class ArticleController implements ArticleApi {
                 return CreateArticleCommand.validateThenCreate(articleRequest.id(), articleRequest.authorId(),
                         articleRequest.title(), articleRequest.content())
                         .toEither()
-                        .flatMap(cac -> this.commandBus.execute(cac).mapLeft(Error.class::cast))
+                        .flatMap(cac -> this.commandBus.<Error, CreateArticleCommand>execute(cac))
                         .mapLeft(e -> this.apiErrorHandler.mapErrorToProblemDetail(e, request))
                         .fold(lpd -> ApiResultUtils.createFailureResponse(lpd, URI.create(request.getRequestURI())),
                                 a -> ApiResultUtils.createSuccessResponse(HttpStatus.CREATED, null));
@@ -92,7 +92,7 @@ final class ArticleController implements ArticleApi {
                 return UpdateArticleCommand.validateThenCreate(articleRequest.id(), articleRequest.authorId(),
                         articleRequest.title(), articleRequest.content())
                         .toEither()
-                        .flatMap(uac -> this.commandBus.execute(uac).mapLeft(Error.class::cast))
+                        .flatMap(uac -> this.commandBus.<Error, UpdateArticleCommand>execute(uac))
                         .mapLeft(e -> this.apiErrorHandler.mapErrorToProblemDetail(e, request))
                         .fold(lpd -> ApiResultUtils.createFailureResponse(lpd, URI.create(request.getRequestURI())),
                                 a -> ApiResultUtils.createSuccessResponse(HttpStatus.OK, null));
@@ -106,7 +106,7 @@ final class ArticleController implements ArticleApi {
                 final HttpServletRequest request) {
                 return DeleteArticleCommand.validateThenCreate(articleId)
                         .toEither()
-                        .flatMap(dac -> this.commandBus.execute(dac).mapLeft(Error.class::cast))
+                        .flatMap(dac -> this.commandBus.<Error, DeleteArticleCommand>execute(dac))
                         .mapLeft(e -> this.apiErrorHandler.mapErrorToProblemDetail(e, request))
                         .fold(lpd -> ApiResultUtils.createFailureResponse(lpd, URI.create(request.getRequestURI())),
                                 a -> ApiResultUtils.createSuccessResponse(HttpStatus.OK, null));
