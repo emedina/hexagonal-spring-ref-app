@@ -13,7 +13,7 @@
     <artifactId>hexagonal-spring-ref-app-author-external-adapter</artifactId>
 
     <properties>
-        <spring.version>6.2.1</spring.version>
+        <spring.version>7.0.2</spring.version>
     </properties>
 
     <dependencies>
